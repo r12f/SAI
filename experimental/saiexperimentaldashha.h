@@ -28,14 +28,14 @@
 #include <saitypes.h>
 
 /**
- * @brief Attribute ID for HA pair
+ * @brief Attribute ID for HA set
  */
-typedef enum _sai_dash_ha_pair_attr_t
+typedef enum _sai_dash_ha_set_attr_t
 {
     /**
      * @brief Start of attributes
      */
-    SAI_DASH_HA_PAIR_ATTR_START,
+    SAI_DASH_HA_SET_ATTR_START,
 
     /**
      * @brief Peer DPU IPv4 address
@@ -44,7 +44,7 @@ typedef enum _sai_dash_ha_pair_attr_t
      * @flags MANDATORY_ON_CREATE | CREATE_ONLY
      * @default disabled
      */
-    SAI_DASH_HA_PAIR_ATTR_PEER_DPU_IPV4 = SAI_DASH_HA_PAIR_ATTR_START,
+    SAI_DASH_HA_SET_ATTR_PEER_DPU_IPV4 = SAI_DASH_HA_SET_ATTR_START,
 
     /**
      * @brief Peer DPU IPv6 address
@@ -53,7 +53,7 @@ typedef enum _sai_dash_ha_pair_attr_t
      * @flags MANDATORY_ON_CREATE | CREATE_ONLY
      * @default disabled
      */
-    SAI_DASH_HA_PAIR_ATTR_PEER_DPU_IPV6,
+    SAI_DASH_HA_SET_ATTR_PEER_DPU_IPV6,
 
     /**
      * @brief NPU IPv4 address of corresponding peer DPU
@@ -62,7 +62,7 @@ typedef enum _sai_dash_ha_pair_attr_t
      * @flags MANDATORY_ON_CREATE | CREATE_ONLY
      * @default disabled
      */
-    SAI_DASH_HA_PAIR_ATTR_PEER_NPU_IPV4,
+    SAI_DASH_HA_SET_ATTR_PEER_NPU_IPV4,
 
     /**
      * @brief NPU IPv6 address of corresponding peer DPU
@@ -71,7 +71,7 @@ typedef enum _sai_dash_ha_pair_attr_t
      * @flags MANDATORY_ON_CREATE | CREATE_ONLY
      * @default disabled
      */
-    SAI_DASH_HA_PAIR_ATTR_PEER_NPU_IPV6,
+    SAI_DASH_HA_SET_ATTR_PEER_NPU_IPV6,
 
     /**
      * @brief NPU tunnel dst port
@@ -80,7 +80,7 @@ typedef enum _sai_dash_ha_pair_attr_t
      * @flags MANDATORY_ON_CREATE | CREATE_ONLY
      * @default disabled
      */
-    SAI_DASH_HA_PAIR_ATTR_NPU_TUNNEL_DST_PORT,
+    SAI_DASH_HA_SET_ATTR_NPU_TUNNEL_DST_PORT,
 
     /**
      * @brief NPU tunnel minimum src port
@@ -89,7 +89,7 @@ typedef enum _sai_dash_ha_pair_attr_t
      * @flags MANDATORY_ON_CREATE | CREATE_ONLY
      * @default disabled
      */
-    SAI_DASH_HA_PAIR_ATTR_NPU_TUNNEL_SRC_PORT_MIN,
+    SAI_DASH_HA_SET_ATTR_NPU_TUNNEL_SRC_PORT_MIN,
 
     /**
      * @brief NPU tunnel maximum src port
@@ -98,7 +98,7 @@ typedef enum _sai_dash_ha_pair_attr_t
      * @flags MANDATORY_ON_CREATE | CREATE_ONLY
      * @default disabled
      */
-    SAI_DASH_HA_PAIR_ATTR_NPU_TUNNEL_SRC_PORT_MAX,
+    SAI_DASH_HA_SET_ATTR_NPU_TUNNEL_SRC_PORT_MAX,
 
     /**
      * @brief DPU data plane channel dst port
@@ -107,7 +107,7 @@ typedef enum _sai_dash_ha_pair_attr_t
      * @flags MANDATORY_ON_CREATE | CREATE_ONLY
      * @default disabled
      */
-    SAI_DASH_HA_PAIR_ATTR_DP_CHANNEL_DST_PORT,
+    SAI_DASH_HA_SET_ATTR_DP_CHANNEL_DST_PORT,
 
     /**
      * @brief DPU data plane channel minimum src port
@@ -116,7 +116,7 @@ typedef enum _sai_dash_ha_pair_attr_t
      * @flags MANDATORY_ON_CREATE | CREATE_ONLY
      * @default disabled
      */
-    SAI_DASH_HA_PAIR_ATTR_DP_CHANNEL_SRC_PORT_MIN,
+    SAI_DASH_HA_SET_ATTR_DP_CHANNEL_SRC_PORT_MIN,
 
     /**
      * @brief DPU data plane channel maximum src port
@@ -125,7 +125,7 @@ typedef enum _sai_dash_ha_pair_attr_t
      * @flags MANDATORY_ON_CREATE | CREATE_ONLY
      * @default disabled
      */
-    SAI_DASH_HA_PAIR_ATTR_DP_CHANNEL_SRC_PORT_MAX,
+    SAI_DASH_HA_SET_ATTR_DP_CHANNEL_SRC_PORT_MAX,
 
     /**
      * @brief DPU data plane channel probe interval in milliseconds
@@ -134,20 +134,20 @@ typedef enum _sai_dash_ha_pair_attr_t
      * @flags MANDATORY_ON_CREATE | CREATE_ONLY
      * @default disabled
      */
-    SAI_DASH_HA_PAIR_ATTR_DP_CHANNEL_PROBE_INTERVAL_IN_MS,
+    SAI_DASH_HA_SET_ATTR_DP_CHANNEL_PROBE_INTERVAL_IN_MS,
 
     /**
      * @brief End of attributes
      */
-    SAI_DASH_HA_PAIR_ATTR_END,
+    SAI_DASH_HA_SET_ATTR_END,
 
     /** Custom range base value */
-    SAI_DASH_HA_PAIR_ATTR_CUSTOM_RANGE_START = 0x10000000,
+    SAI_DASH_HA_SET_ATTR_CUSTOM_RANGE_START = 0x10000000,
 
     /** End of custom range base */
-    SAI_DASH_HA_PAIR_ATTR_CUSTOM_RANGE_END,
+    SAI_DASH_HA_SET_ATTR_CUSTOM_RANGE_END,
 
-} sai_dash_ha_pair_attr_t;
+} sai_dash_ha_set_attr_t;
 
 /**
  * @brief Attribute data for HA role
@@ -206,14 +206,14 @@ typedef enum _sai_dash_ha_session_attr_t
     SAI_DASH_HA_SESSION_ATTR_ENI_ID = SAI_DASH_HA_SESSION_ATTR_START,
 
     /**
-     * @brief HA pair object id
+     * @brief HA set object id
      *
      * @type sai_object_id_t
      * @flags MANDATORY_ON_CREATE | CREATE_ONLY
      * @allownull false
      * @default disabled
      */
-    SAI_DASH_HA_SESSION_ATTR_HA_PAIR_ID,
+    SAI_DASH_HA_SESSION_ATTR_HA_SET_ID,
 
     /**
      * @brief Desired HA role
@@ -496,54 +496,54 @@ typedef enum _sai_ha_session_stat_t
 
 
 /**
- * @brief Create dash_ha_pair
+ * @brief Create dash_ha_set
  *
- * @param[out] dash_ha_pair_id HA pair id
+ * @param[out] dash_ha_set_id HA set id
  * @param[in] switch_id Switch id
  * @param[in] attr_count Number of attributes
  * @param[in] attr_list Array of attributes
  *
  * @return #SAI_STATUS_SUCCESS on success Failure status code on error
  */
-typedef sai_status_t (*sai_create_dash_ha_pair_fn)(
-        _Out_ sai_object_id_t *dash_ha_pair_id,
+typedef sai_status_t (*sai_create_dash_ha_set_fn)(
+        _Out_ sai_object_id_t *dash_ha_set_id,
         _In_ sai_object_id_t switch_id,
         _In_ uint32_t attr_count,
         _In_ const sai_attribute_t *attr_list);
 
 /**
- * @brief Remove dash_ha_pair
+ * @brief Remove dash_ha_set
  *
- * @param[in] dash_ha_pair_id HA pair id
+ * @param[in] dash_ha_set_id HA set id
  *
  * @return #SAI_STATUS_SUCCESS on success Failure status code on error
  */
-typedef sai_status_t (*sai_remove_dash_ha_pair_fn)(
-        _In_ sai_object_id_t dash_ha_pair_id);
+typedef sai_status_t (*sai_remove_dash_ha_set_fn)(
+        _In_ sai_object_id_t dash_ha_set_id);
 
 /**
- * @brief Set attribute for dash_ha_pair
+ * @brief Set attribute for dash_ha_set
  *
- * @param[in] dash_ha_pair_id HA pair id
+ * @param[in] dash_ha_set_id HA set id
  * @param[in] attr Attribute
  *
  * @return #SAI_STATUS_SUCCESS on success Failure status code on error
  */
-typedef sai_status_t (*sai_set_dash_ha_pair_attribute_fn)(
-        _In_ sai_object_id_t dash_ha_pair_id,
+typedef sai_status_t (*sai_set_dash_ha_set_attribute_fn)(
+        _In_ sai_object_id_t dash_ha_set_id,
         _In_ const sai_attribute_t *attr);
 
 /**
- * @brief Get attribute for dash_ha_pair
+ * @brief Get attribute for dash_ha_set
  *
- * @param[in] dash_ha_pair_id HA pair id
+ * @param[in] dash_ha_set_id HA set id
  * @param[in] attr_count Number of attributes
  * @param[inout] attr_list Array of attributes
  *
  * @return #SAI_STATUS_SUCCESS on success Failure status code on error
  */
-typedef sai_status_t (*sai_get_dash_ha_pair_attribute_fn)(
-        _In_ sai_object_id_t dash_ha_pair_id,
+typedef sai_status_t (*sai_get_dash_ha_set_attribute_fn)(
+        _In_ sai_object_id_t dash_ha_set_id,
         _In_ uint32_t attr_count,
         _Inout_ sai_attribute_t *attr_list);
 
@@ -649,10 +649,10 @@ typedef sai_status_t (*sai_clear_ha_session_stats_fn)(
 
 typedef struct _sai_dash_ha_api_t
 {
-    sai_create_dash_ha_pair_fn              create_dash_ha_pair;
-    sai_remove_dash_ha_pair_fn              remove_dash_ha_pair;
-    sai_set_dash_ha_pair_attribute_fn       set_dash_ha_pair_attribute;
-    sai_get_dash_ha_pair_attribute_fn       get_dash_ha_pair_attribute;
+    sai_create_dash_ha_set_fn              create_dash_ha_set;
+    sai_remove_dash_ha_set_fn              remove_dash_ha_set;
+    sai_set_dash_ha_set_attribute_fn       set_dash_ha_set_attribute;
+    sai_get_dash_ha_set_attribute_fn       get_dash_ha_set_attribute;
 
     sai_create_dash_ha_session_fn           create_dash_ha_session;
     sai_remove_dash_ha_session_fn           remove_dash_ha_session;
