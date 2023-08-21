@@ -28,7 +28,7 @@
 #include <saitypes.h>
 
 /**
- * @brief Attribute ID for sai_dash_ha_pair
+ * @brief Attribute ID for HA pair
  */
 typedef enum _sai_dash_ha_pair_attr_t
 {
@@ -150,7 +150,7 @@ typedef enum _sai_dash_ha_pair_attr_t
 } sai_dash_ha_pair_attr_t;
 
 /**
- * @brief Attribute data for #SAI_dash_ha_RULE_ATTR_ACTION
+ * @brief Attribute data for HA role
  */
 typedef enum _sai_dash_ha_role_t
 {
@@ -186,7 +186,7 @@ typedef enum _sai_dash_ha_role_t
 } sai_dash_ha_role_t;
 
 /**
- * @brief Attribute ID for sai_dash_ha_session
+ * @brief Attribute ID for HA session
  */
 typedef enum _sai_dash_ha_session_attr_t
 {
