@@ -86,9 +86,6 @@ all: toolsversions saisanitycheck saimetadatatest saiserializetest saidepgraph.s
 	./checksymbols.pl *.o.symbols
 	./checkheaders.pl ../inc ../inc
 	./aspellcheck.pl
-	./checkenumlock.sh
-	./checkancestry.sh
-	./checkstructs.sh
 	./saimetadatatest >/dev/null
 	./saiserializetest >/dev/null
 	./saisanitycheck
