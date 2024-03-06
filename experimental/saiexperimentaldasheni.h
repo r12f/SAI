@@ -133,6 +133,16 @@ typedef enum _sai_eni_attr_t
     SAI_ENI_ATTR_ADMIN_STATE,
 
     /**
+     * @brief Action set_eni_attrs parameter HA_SCOPE_ID
+     *
+     * @type sai_uint16_t
+     * @flags CREATE_AND_SET
+     * @isvlan false
+     * @default 0
+     */
+    SAI_ENI_ATTR_HA_SCOPE_ID,
+
+    /**
      * @brief Action set_eni_attrs parameter VM_UNDERLAY_DIP
      *
      * @type sai_ip_address_t
@@ -209,6 +219,24 @@ typedef enum _sai_eni_attr_t
      * @default SAI_NULL_OBJECT_ID
      */
     SAI_ENI_ATTR_V6_METER_POLICY_ID,
+
+    /**
+     * @brief Action set_eni_attrs parameter DASH_TUNNEL_DSCP_MODE
+     *
+     * @type sai_dash_tunnel_dscp_mode_t
+     * @flags CREATE_AND_SET
+     * @default SAI_DASH_TUNNEL_DSCP_MODE_INVALID
+     */
+    SAI_ENI_ATTR_DASH_TUNNEL_DSCP_MODE,
+
+    /**
+     * @brief Action set_eni_attrs parameter DSCP
+     *
+     * @type sai_uint8_t
+     * @flags CREATE_AND_SET
+     * @default 0
+     */
+    SAI_ENI_ATTR_DSCP,
 
     /**
      * @brief Action set_eni_attrs parameter INBOUND_V4_STAGE1_DASH_ACL_GROUP_ID
@@ -431,6 +459,15 @@ typedef enum _sai_eni_attr_t
     SAI_ENI_ATTR_OUTBOUND_V6_STAGE5_DASH_ACL_GROUP_ID,
 
     /**
+     * @brief Action set_eni_attrs parameter DISABLE_FAST_PATH_ICMP_FLOW_REDIRECTION
+     *
+     * @type bool
+     * @flags CREATE_AND_SET
+     * @default false
+     */
+    SAI_ENI_ATTR_DISABLE_FAST_PATH_ICMP_FLOW_REDIRECTION,
+
+    /**
      * @brief End of attributes
      */
     SAI_ENI_ATTR_END,
@@ -442,6 +479,208 @@ typedef enum _sai_eni_attr_t
     SAI_ENI_ATTR_CUSTOM_RANGE_END,
 
 } sai_eni_attr_t;
+
+/**
+ * @brief Counter IDs for eni in sai_get_eni_stats() call
+ */
+typedef enum _sai_eni_stat_t
+{
+    /** DASH eni RX_BYTES stat count */
+    SAI_ENI_STAT_RX_BYTES,
+
+    /** DASH eni RX_PACKETS stat count */
+    SAI_ENI_STAT_RX_PACKETS,
+
+    /** DASH eni TX_BYTES stat count */
+    SAI_ENI_STAT_TX_BYTES,
+
+    /** DASH eni TX_PACKETS stat count */
+    SAI_ENI_STAT_TX_PACKETS,
+
+    /** DASH eni OUTBOUND_RX_BYTES stat count */
+    SAI_ENI_STAT_OUTBOUND_RX_BYTES,
+
+    /** DASH eni OUTBOUND_RX_PACKETS stat count */
+    SAI_ENI_STAT_OUTBOUND_RX_PACKETS,
+
+    /** DASH eni OUTBOUND_TX_BYTES stat count */
+    SAI_ENI_STAT_OUTBOUND_TX_BYTES,
+
+    /** DASH eni OUTBOUND_TX_PACKETS stat count */
+    SAI_ENI_STAT_OUTBOUND_TX_PACKETS,
+
+    /** DASH eni INBOUND_RX_BYTES stat count */
+    SAI_ENI_STAT_INBOUND_RX_BYTES,
+
+    /** DASH eni INBOUND_RX_PACKETS stat count */
+    SAI_ENI_STAT_INBOUND_RX_PACKETS,
+
+    /** DASH eni INBOUND_TX_BYTES stat count */
+    SAI_ENI_STAT_INBOUND_TX_BYTES,
+
+    /** DASH eni INBOUND_TX_PACKETS stat count */
+    SAI_ENI_STAT_INBOUND_TX_PACKETS,
+
+    /** DASH eni LB_FAST_PATH_ICMP_IN_BYTES stat count */
+    SAI_ENI_STAT_LB_FAST_PATH_ICMP_IN_BYTES,
+
+    /** DASH eni LB_FAST_PATH_ICMP_IN_PACKETS stat count */
+    SAI_ENI_STAT_LB_FAST_PATH_ICMP_IN_PACKETS,
+
+    /** DASH eni FLOW_CREATED stat count */
+    SAI_ENI_STAT_FLOW_CREATED,
+
+    /** DASH eni FLOW_CREATE_FAILED stat count */
+    SAI_ENI_STAT_FLOW_CREATE_FAILED,
+
+    /** DASH eni FLOW_UPDATED stat count */
+    SAI_ENI_STAT_FLOW_UPDATED,
+
+    /** DASH eni FLOW_UPDATE_FAILED stat count */
+    SAI_ENI_STAT_FLOW_UPDATE_FAILED,
+
+    /** DASH eni FLOW_DELETED stat count */
+    SAI_ENI_STAT_FLOW_DELETED,
+
+    /** DASH eni FLOW_DELETE_FAILED stat count */
+    SAI_ENI_STAT_FLOW_DELETE_FAILED,
+
+    /** DASH eni FLOW_AGED stat count */
+    SAI_ENI_STAT_FLOW_AGED,
+
+    /** DASH eni INLINE_SYNC_PACKET_RX_BYTES stat count */
+    SAI_ENI_STAT_INLINE_SYNC_PACKET_RX_BYTES,
+
+    /** DASH eni INLINE_SYNC_PACKET_RX_PACKETS stat count */
+    SAI_ENI_STAT_INLINE_SYNC_PACKET_RX_PACKETS,
+
+    /** DASH eni INLINE_SYNC_PACKET_TX_BYTES stat count */
+    SAI_ENI_STAT_INLINE_SYNC_PACKET_TX_BYTES,
+
+    /** DASH eni INLINE_SYNC_PACKET_TX_PACKETS stat count */
+    SAI_ENI_STAT_INLINE_SYNC_PACKET_TX_PACKETS,
+
+    /** DASH eni TIMED_SYNC_PACKET_RX_BYTES stat count */
+    SAI_ENI_STAT_TIMED_SYNC_PACKET_RX_BYTES,
+
+    /** DASH eni TIMED_SYNC_PACKET_RX_PACKETS stat count */
+    SAI_ENI_STAT_TIMED_SYNC_PACKET_RX_PACKETS,
+
+    /** DASH eni TIMED_SYNC_PACKET_TX_BYTES stat count */
+    SAI_ENI_STAT_TIMED_SYNC_PACKET_TX_BYTES,
+
+    /** DASH eni TIMED_SYNC_PACKET_TX_PACKETS stat count */
+    SAI_ENI_STAT_TIMED_SYNC_PACKET_TX_PACKETS,
+
+    /** DASH eni INLINE_FLOW_CREATE_REQ_SENT stat count */
+    SAI_ENI_STAT_INLINE_FLOW_CREATE_REQ_SENT,
+
+    /** DASH eni INLINE_FLOW_CREATE_REQ_RECV stat count */
+    SAI_ENI_STAT_INLINE_FLOW_CREATE_REQ_RECV,
+
+    /** DASH eni INLINE_FLOW_CREATE_REQ_FAILED stat count */
+    SAI_ENI_STAT_INLINE_FLOW_CREATE_REQ_FAILED,
+
+    /** DASH eni INLINE_FLOW_CREATE_ACK_RECV stat count */
+    SAI_ENI_STAT_INLINE_FLOW_CREATE_ACK_RECV,
+
+    /** DASH eni INLINE_FLOW_CREATE_ACK_FAILED_RECV stat count */
+    SAI_ENI_STAT_INLINE_FLOW_CREATE_ACK_FAILED_RECV,
+
+    /** DASH eni INLINE_FLOW_CREATE_ACK_IGNORED_RECV stat count */
+    SAI_ENI_STAT_INLINE_FLOW_CREATE_ACK_IGNORED_RECV,
+
+    /** DASH eni TIMED_FLOW_CREATE_REQ_SENT stat count */
+    SAI_ENI_STAT_TIMED_FLOW_CREATE_REQ_SENT,
+
+    /** DASH eni TIMED_FLOW_CREATE_REQ_RECV stat count */
+    SAI_ENI_STAT_TIMED_FLOW_CREATE_REQ_RECV,
+
+    /** DASH eni TIMED_FLOW_CREATE_REQ_FAILED stat count */
+    SAI_ENI_STAT_TIMED_FLOW_CREATE_REQ_FAILED,
+
+    /** DASH eni TIMED_FLOW_CREATE_ACK_RECV stat count */
+    SAI_ENI_STAT_TIMED_FLOW_CREATE_ACK_RECV,
+
+    /** DASH eni TIMED_FLOW_CREATE_ACK_FAILED_RECV stat count */
+    SAI_ENI_STAT_TIMED_FLOW_CREATE_ACK_FAILED_RECV,
+
+    /** DASH eni TIMED_FLOW_CREATE_ACK_IGNORED_RECV stat count */
+    SAI_ENI_STAT_TIMED_FLOW_CREATE_ACK_IGNORED_RECV,
+
+    /** DASH eni INLINE_FLOW_UPDATE_REQ_SENT stat count */
+    SAI_ENI_STAT_INLINE_FLOW_UPDATE_REQ_SENT,
+
+    /** DASH eni INLINE_FLOW_UPDATE_REQ_RECV stat count */
+    SAI_ENI_STAT_INLINE_FLOW_UPDATE_REQ_RECV,
+
+    /** DASH eni INLINE_FLOW_UPDATE_REQ_FAILED stat count */
+    SAI_ENI_STAT_INLINE_FLOW_UPDATE_REQ_FAILED,
+
+    /** DASH eni INLINE_FLOW_UPDATE_ACK_RECV stat count */
+    SAI_ENI_STAT_INLINE_FLOW_UPDATE_ACK_RECV,
+
+    /** DASH eni INLINE_FLOW_UPDATE_ACK_FAILED_RECV stat count */
+    SAI_ENI_STAT_INLINE_FLOW_UPDATE_ACK_FAILED_RECV,
+
+    /** DASH eni INLINE_FLOW_UPDATE_ACK_IGNORED_RECV stat count */
+    SAI_ENI_STAT_INLINE_FLOW_UPDATE_ACK_IGNORED_RECV,
+
+    /** DASH eni TIMED_FLOW_UPDATE_REQ_SENT stat count */
+    SAI_ENI_STAT_TIMED_FLOW_UPDATE_REQ_SENT,
+
+    /** DASH eni TIMED_FLOW_UPDATE_REQ_RECV stat count */
+    SAI_ENI_STAT_TIMED_FLOW_UPDATE_REQ_RECV,
+
+    /** DASH eni TIMED_FLOW_UPDATE_REQ_FAILED stat count */
+    SAI_ENI_STAT_TIMED_FLOW_UPDATE_REQ_FAILED,
+
+    /** DASH eni TIMED_FLOW_UPDATE_ACK_RECV stat count */
+    SAI_ENI_STAT_TIMED_FLOW_UPDATE_ACK_RECV,
+
+    /** DASH eni TIMED_FLOW_UPDATE_ACK_FAILED_RECV stat count */
+    SAI_ENI_STAT_TIMED_FLOW_UPDATE_ACK_FAILED_RECV,
+
+    /** DASH eni TIMED_FLOW_UPDATE_ACK_IGNORED_RECV stat count */
+    SAI_ENI_STAT_TIMED_FLOW_UPDATE_ACK_IGNORED_RECV,
+
+    /** DASH eni INLINE_FLOW_DELETE_REQ_SENT stat count */
+    SAI_ENI_STAT_INLINE_FLOW_DELETE_REQ_SENT,
+
+    /** DASH eni INLINE_FLOW_DELETE_REQ_RECV stat count */
+    SAI_ENI_STAT_INLINE_FLOW_DELETE_REQ_RECV,
+
+    /** DASH eni INLINE_FLOW_DELETE_REQ_FAILED stat count */
+    SAI_ENI_STAT_INLINE_FLOW_DELETE_REQ_FAILED,
+
+    /** DASH eni INLINE_FLOW_DELETE_ACK_RECV stat count */
+    SAI_ENI_STAT_INLINE_FLOW_DELETE_ACK_RECV,
+
+    /** DASH eni INLINE_FLOW_DELETE_ACK_FAILED_RECV stat count */
+    SAI_ENI_STAT_INLINE_FLOW_DELETE_ACK_FAILED_RECV,
+
+    /** DASH eni INLINE_FLOW_DELETE_ACK_IGNORED_RECV stat count */
+    SAI_ENI_STAT_INLINE_FLOW_DELETE_ACK_IGNORED_RECV,
+
+    /** DASH eni TIMED_FLOW_DELETE_REQ_SENT stat count */
+    SAI_ENI_STAT_TIMED_FLOW_DELETE_REQ_SENT,
+
+    /** DASH eni TIMED_FLOW_DELETE_REQ_RECV stat count */
+    SAI_ENI_STAT_TIMED_FLOW_DELETE_REQ_RECV,
+
+    /** DASH eni TIMED_FLOW_DELETE_REQ_FAILED stat count */
+    SAI_ENI_STAT_TIMED_FLOW_DELETE_REQ_FAILED,
+
+    /** DASH eni TIMED_FLOW_DELETE_ACK_RECV stat count */
+    SAI_ENI_STAT_TIMED_FLOW_DELETE_ACK_RECV,
+
+    /** DASH eni TIMED_FLOW_DELETE_ACK_FAILED_RECV stat count */
+    SAI_ENI_STAT_TIMED_FLOW_DELETE_ACK_FAILED_RECV,
+
+    /** DASH eni TIMED_FLOW_DELETE_ACK_IGNORED_RECV stat count */
+    SAI_ENI_STAT_TIMED_FLOW_DELETE_ACK_IGNORED_RECV,
+
+} sai_eni_stat_t;
 
 /**
  * @brief Create dash_eni_eni_ether_address_map_entry
@@ -590,6 +829,54 @@ typedef sai_status_t (*sai_get_eni_attribute_fn)(
         _In_ uint32_t attr_count,
         _Inout_ sai_attribute_t *attr_list);
 
+/**
+ * @brief Get eni statistics counters. Deprecated for backward compatibility.
+ *
+ * @param[in] eni_id Entry id
+ * @param[in] number_of_counters Number of counters in the array
+ * @param[in] counter_ids Specifies the array of counter ids
+ * @param[out] counters Array of resulting counter values.
+ *
+ * @return #SAI_STATUS_SUCCESS on success, failure status code on error
+ */
+typedef sai_status_t (*sai_get_eni_stats_fn)(
+        _In_ sai_object_id_t eni_id,
+        _In_ uint32_t number_of_counters,
+        _In_ const sai_stat_id_t *counter_ids,
+        _Out_ uint64_t *counters);
+
+/**
+ * @brief Get eni statistics counters extended.
+ *
+ * @param[in] eni_id Entry id
+ * @param[in] number_of_counters Number of counters in the array
+ * @param[in] counter_ids Specifies the array of counter ids
+ * @param[in] mode Statistics mode
+ * @param[out] counters Array of resulting counter values.
+ *
+ * @return #SAI_STATUS_SUCCESS on success, failure status code on error
+ */
+typedef sai_status_t (*sai_get_eni_stats_ext_fn)(
+        _In_ sai_object_id_t eni_id,
+        _In_ uint32_t number_of_counters,
+        _In_ const sai_stat_id_t *counter_ids,
+        _In_ sai_stats_mode_t mode,
+        _Out_ uint64_t *counters);
+
+/**
+ * @brief Clear eni statistics counters.
+ *
+ * @param[in] eni_id Entry id
+ * @param[in] number_of_counters Number of counters in the array
+ * @param[in] counter_ids Specifies the array of counter ids
+ *
+ * @return #SAI_STATUS_SUCCESS on success, failure status code on error
+ */
+typedef sai_status_t (*sai_clear_eni_stats_fn)(
+        _In_ sai_object_id_t eni_id,
+        _In_ uint32_t number_of_counters,
+        _In_ const sai_stat_id_t *counter_ids);
+
 typedef struct _sai_dash_eni_api_t
 {
     sai_create_eni_ether_address_map_entry_fn           create_eni_ether_address_map_entry;
@@ -603,6 +890,9 @@ typedef struct _sai_dash_eni_api_t
     sai_remove_eni_fn                                   remove_eni;
     sai_set_eni_attribute_fn                            set_eni_attribute;
     sai_get_eni_attribute_fn                            get_eni_attribute;
+    sai_get_eni_stats_fn                                get_eni_stats;
+    sai_get_eni_stats_ext_fn                            get_eni_stats_ext;
+    sai_clear_eni_stats_fn                              clear_eni_stats;
     sai_bulk_object_create_fn                           create_enis;
     sai_bulk_object_remove_fn                           remove_enis;
 
