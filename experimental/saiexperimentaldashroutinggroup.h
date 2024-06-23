@@ -17,120 +17,120 @@
  *    assistance with these files: Intel Corporation, Mellanox Technologies Ltd,
  *    Dell Products, L.P., Facebook, Inc., Marvell International Ltd.
  *
- * @file    saiexperimentaldashvnet.h
+ * @file    saiexperimentaldashroutinggroup.h
  *
- * @brief   This module defines SAI extensions for DASH VNET
+ * @brief   This module defines SAI extensions for DASH routing group
  *
  * @warning This module is a SAI experimental module
  */
 
-#if !defined (__SAIEXPERIMENTALDASHVNET_H_)
-#define __SAIEXPERIMENTALDASHVNET_H_
+#if !defined (__SAIEXPERIMENTALDASHROUTINGGROUP_H_)
+#define __SAIEXPERIMENTALDASHROUTINGGROUP_H_
 
 #include <saitypesextensions.h>
 
 /**
- * @defgroup SAIEXPERIMENTALDASHVNET SAI - Experimental: DASH VNET specific API definitions
+ * @defgroup SAIEXPERIMENTALDASHROUTINGGROUP SAI - Experimental: DASH routing group specific API definitions
  *
  * @{
  */
 
 /**
- * @brief Attribute ID for VNET
+ * @brief Attribute ID for routing group
  */
-typedef enum _sai_vnet_attr_t
+typedef enum _sai_routing_group_attr_t
 {
     /**
      * @brief Start of attributes
      */
-    SAI_VNET_ATTR_START,
+    SAI_ROUTING_GROUP_ATTR_START,
 
     /**
-     * @brief Action parameter VNI
+     * @brief Action parameter admin state
      *
-     * @type sai_uint32_t
+     * @type bool
      * @flags CREATE_AND_SET
-     * @default 0
+     * @default false
      */
-    SAI_VNET_ATTR_VNI = SAI_VNET_ATTR_START,
+    SAI_ROUTING_GROUP_ATTR_ADMIN_STATE = SAI_ROUTING_GROUP_ATTR_START,
 
     /**
      * @brief End of attributes
      */
-    SAI_VNET_ATTR_END,
+    SAI_ROUTING_GROUP_ATTR_END,
 
     /** Custom range base value */
-    SAI_VNET_ATTR_CUSTOM_RANGE_START = 0x10000000,
+    SAI_ROUTING_GROUP_ATTR_CUSTOM_RANGE_START = 0x10000000,
 
     /** End of custom range base */
-    SAI_VNET_ATTR_CUSTOM_RANGE_END,
+    SAI_ROUTING_GROUP_ATTR_CUSTOM_RANGE_END,
 
-} sai_vnet_attr_t;
+} sai_routing_group_attr_t;
 
 /**
- * @brief Create VNET
+ * @brief Create routing group
  *
- * @param[out] vnet_id Entry id
+ * @param[out] routing_group_id Entry id
  * @param[in] switch_id Switch id
  * @param[in] attr_count Number of attributes
  * @param[in] attr_list Array of attributes
  *
  * @return #SAI_STATUS_SUCCESS on success Failure status code on error
  */
-typedef sai_status_t (*sai_create_vnet_fn)(
-        _Out_ sai_object_id_t *vnet_id,
+typedef sai_status_t (*sai_create_routing_group_fn)(
+        _Out_ sai_object_id_t *routing_group_id,
         _In_ sai_object_id_t switch_id,
         _In_ uint32_t attr_count,
         _In_ const sai_attribute_t *attr_list);
 
 /**
- * @brief Remove VNET
+ * @brief Remove routing group
  *
- * @param[in] vnet_id Entry id
+ * @param[in] routing_group_id Entry id
  *
  * @return #SAI_STATUS_SUCCESS on success Failure status code on error
  */
-typedef sai_status_t (*sai_remove_vnet_fn)(
-        _In_ sai_object_id_t vnet_id);
+typedef sai_status_t (*sai_remove_routing_group_fn)(
+        _In_ sai_object_id_t routing_group_id);
 
 /**
- * @brief Set attribute for VNET
+ * @brief Set attribute for routing group
  *
- * @param[in] vnet_id Entry id
+ * @param[in] routing_group_id Entry id
  * @param[in] attr Attribute
  *
  * @return #SAI_STATUS_SUCCESS on success Failure status code on error
  */
-typedef sai_status_t (*sai_set_vnet_attribute_fn)(
-        _In_ sai_object_id_t vnet_id,
+typedef sai_status_t (*sai_set_routing_group_attribute_fn)(
+        _In_ sai_object_id_t routing_group_id,
         _In_ const sai_attribute_t *attr);
 
 /**
- * @brief Get attribute for VNET
+ * @brief Get attribute for routing group
  *
- * @param[in] vnet_id Entry id
+ * @param[in] routing_group_id Entry id
  * @param[in] attr_count Number of attributes
  * @param[inout] attr_list Array of attributes
  *
  * @return #SAI_STATUS_SUCCESS on success Failure status code on error
  */
-typedef sai_status_t (*sai_get_vnet_attribute_fn)(
-        _In_ sai_object_id_t vnet_id,
+typedef sai_status_t (*sai_get_routing_group_attribute_fn)(
+        _In_ sai_object_id_t routing_group_id,
         _In_ uint32_t attr_count,
         _Inout_ sai_attribute_t *attr_list);
 
-typedef struct _sai_dash_vnet_api_t
+typedef struct _sai_dash_routing_group_api_t
 {
-    sai_create_vnet_fn           create_vnet;
-    sai_remove_vnet_fn           remove_vnet;
-    sai_set_vnet_attribute_fn    set_vnet_attribute;
-    sai_get_vnet_attribute_fn    get_vnet_attribute;
-    sai_bulk_object_create_fn    create_vnets;
-    sai_bulk_object_remove_fn    remove_vnets;
+    sai_create_routing_group_fn           create_routing_group;
+    sai_remove_routing_group_fn           remove_routing_group;
+    sai_set_routing_group_attribute_fn    set_routing_group_attribute;
+    sai_get_routing_group_attribute_fn    get_routing_group_attribute;
+    sai_bulk_object_create_fn             create_routing_groups;
+    sai_bulk_object_remove_fn             remove_routing_groups;
 
-} sai_dash_vnet_api_t;
+} sai_dash_routing_group_api_t;
 
 /**
  * @}
  */
-#endif /** __SAIEXPERIMENTALDASHVNET_H_ */
+#endif /** __SAIEXPERIMENTALDASHROUTINGGROUP_H_ */
